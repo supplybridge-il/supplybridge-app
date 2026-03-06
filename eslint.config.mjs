@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Architecture Requirement: Enforce <= 60 lines per file in the src directory
+  {
+    files: ["src/**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "max-lines": ["error", { "max": 60, "skipBlankLines": true, "skipComments": true }]
+    }
+  }
 ]);
 
 export default eslintConfig;
