@@ -1,0 +1,8 @@
+# Core Architecture & Database Models
+# Any changes to these folders require review from the core team
+src/lib/ @supplybridge-il/core
+src/models/ @supplybridge-il/core
+
+# Documentation
+README.md @supplybridge-il/core
+CONTRIBUTING.md @supplybridge-il/core
