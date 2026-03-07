@@ -10,13 +10,17 @@ export enum UserTier {
   PREMIUM = 'PREMIUM'
 }
 
+export interface ICompany {
+  name: string;
+}
+
 export interface IUser {
   _id?: string;
   name: string;
   email: string;
   password?: string;
   role: UserRole;
-  companyName: string;
+  company: ICompany;
   tier: UserTier;
   isVerified: boolean;
   createdAt: Date;
@@ -27,4 +31,5 @@ export interface UserSession {
   email: string;
   role: UserRole;
   tier: UserTier;
+  companyName: string;
 }
