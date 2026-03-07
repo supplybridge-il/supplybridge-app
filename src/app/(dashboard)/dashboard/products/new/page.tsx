@@ -26,7 +26,6 @@ export default function AddProductPage() {
       router.push('/dashboard/products');
       router.refresh();
     } catch (error) {
-      // Fix: Use instanceof Error to safely access .message without 'any'
       const message = error instanceof Error ? error.message : 'An error occurred';
       alert(message);
     } finally {
@@ -35,11 +34,19 @@ export default function AddProductPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Add New Product</h1>
-      <div className="bg-white p-6 rounded-xl shadow-sm border">
-        <ProductForm onSubmit={handleCreate} isLoading={loading} />
-      </div>
-    </div>
+    /* Removed max-w-2xl and internal white box to allow the form to fill the screen */
+    <main className="min-h-screen bg-slate-50/50 w-full pt-8 pb-20 lg:pb-8">
+      <header className="px-8 mb-4 flex flex-col gap-1">
+        <h1 className="text-3xl font-black text-slate-900 tracking-tight">
+          List New Product
+        </h1>
+        <p className="text-slate-500 font-medium">
+          Expand your marketplace presence with high-quality inventory listings.
+        </p>
+      </header>
+
+      {/* The ProductForm now handles its own internal grid and card spacing */}
+      <ProductForm onSubmit={handleCreate} isLoading={loading} />
+    </main>
   );
 }
