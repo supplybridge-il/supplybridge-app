@@ -15,16 +15,21 @@ export const productSchema = z.object({
   name: z.string().min(3, 'Product name must be at least 3 characters'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   category: z.nativeEnum(ProductCategory, { message: 'Invalid category' }),
-  tags: z.array(z.string()).optional().default([]),
-  baseQuantity: z.number().min(0, 'Quantity cannot be negative'),
-  minOrderQty: z.number().min(1, 'Minimum order must be at least 1'),
-  unit: z.string().min(1, 'Unit (e.g., kg, unit) is required'),
+  tags: z.array(z.string()),
+  images: z.array(z.object({
+    publicId: z.string(),
+    url: z.string(),
+    alt: z.string().optional(),
+  })),
+  baseQuantity: z.number().min(0),
+  minOrderQty: z.number().min(1),
+  unit: z.string().min(1),
   priceRange: z.object({
     min: z.number().min(0),
     max: z.number().min(0),
-    currency: z.string().default('ILS'),
+    currency: z.string(),
   }),
-  isActive: z.boolean().optional().default(true),
+  isActive: z.boolean(),
 }).strict();
 
 export type RegisterInput = z.infer<typeof registerSchema>;
