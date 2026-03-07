@@ -25,7 +25,13 @@ async function dbConnect(): Promise<Mongoose> {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    const opts = { bufferCommands: false };
+    // Added the connection options specified in the PRD Phase 1.1
+    const opts = { 
+      bufferCommands: false,
+      maxPoolSize: 10, 
+      serverSelectionTimeoutMS: 5000 
+    };
+    
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((m) => m);
   }
   
